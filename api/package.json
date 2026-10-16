@@ -1,0 +1,30 @@
+{
+  "name": "@appointment-ai/api",
+  "version": "0.0.1",
+  "description": "Appointment AI API - M3 (authentication and security middleware)",
+  "main": "dist/index.js",
+  "type": "commonjs",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc -p tsconfig.build.json",
+    "start": "node dist/index.js",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src/**/*.ts test/**/*.ts",
+    "test": "vitest run",
+    "seed": "tsx prisma/seed.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.22.0",
+    "bcryptjs": "^3.0.3",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
+    "express": "^5.0.0",
+    "jsonwebtoken": "^9.0.3",
+    "zod": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "tsx": "^4",
+    "typescript": "^5.6"
+  }
+}

@@ -1,0 +1,82 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id               String            @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name             String
+  email            String            @unique
+  passwordHash     String            @map("password_hash")
+  createdAt        DateTime          @default(now()) @map("created_at") @db.Timestamptz(6)
+  appointments     Appointment[]
+  bookingProposals BookingProposal[]
+  chatSessions     ChatSession[]
+
+  @@map("users")
+}
+
+model ChatSession {
+  id        String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId    String        @map("user_id") @db.Uuid
+  title     String?
+  metadata  Json          @default("{}")
+  createdAt DateTime      @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime      @updatedAt @map("updated_at") @db.Timestamptz(6)
+  messages  ChatMessage[]
+  user      User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, updatedAt(sort: Desc)], map: "idx_chat_sessions_user_updated")
+  @@map("chat_sessions")
+}
+
+model ChatMessage {
+  id        String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  sessionId String      @map("session_id") @db.Uuid
+  role      String
+  content   String
+  createdAt DateTime    @default(now()) @map("created_at") @db.Timestamptz(6)
+  session   ChatSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@index([sessionId, createdAt], map: "idx_chat_messages_session_created")
+  @@map("chat_messages")
+}
+
+model Appointment {
+  id               String            @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId           String            @map("user_id") @db.Uuid
+  service          String
+  startsAt         DateTime          @map("starts_at") @db.Timestamptz(6)
+  endsAt           DateTime          @map("ends_at") @db.Timestamptz(6)
+  status           String            @default("confirmed")
+  createdAt        DateTime          @default(now()) @map("created_at") @db.Timestamptz(6)
+  user             User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  bookingProposals BookingProposal[]
+
+  @@index([userId, startsAt(sort: Desc)], map: "idx_appointments_user_start")
+  @@map("appointments")
+}
+
+model BookingProposal {
+  proposalId      String       @id @default(dbgenerated("gen_random_uuid()")) @map("proposal_id") @db.Uuid
+  userId          String       @map("user_id") @db.Uuid
+  service         String
+  startsAt        DateTime     @map("starts_at") @db.Timestamptz(6)
+  endsAt          DateTime     @map("ends_at") @db.Timestamptz(6)
+  timezone        String
+  durationMinutes Int          @map("duration_minutes")
+  expiresAt       DateTime     @map("expires_at") @db.Timestamptz(6)
+  status          String       @default("pending")
+  appointmentId   String?      @map("appointment_id") @db.Uuid
+  createdAt       DateTime     @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt       DateTime     @updatedAt @map("updated_at") @db.Timestamptz(6)
+  appointment     Appointment? @relation(fields: [appointmentId], references: [id])
+  user            User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, expiresAt, status], map: "idx_booking_proposals_user_expires_status")
+  @@map("booking_proposals")
+}

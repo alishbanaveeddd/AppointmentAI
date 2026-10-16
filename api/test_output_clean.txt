@@ -1,0 +1,634 @@
+﻿node.exe : Γùç injected env (4) from .env
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node_mo 
+...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Γùç injected env (4) from .e 
+   nv:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+[33m(!) Your Vite config uses features that are unsupported by 
+`configLoader: 'native'`, which is planned to become the default in a 
+future major version of Vite:
+  - `__dirname` (vitest.config.mts:7:24). Use `import.meta.dirname` 
+instead
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this 
+warning.[39m
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.4 [39m[90mC:/Users/hp/Documents/projects/Full_Stack_App/appointment-ai-design-pack (2)/appointment-ai-design-pack/api[39m
+
+ [31m├ù[39m test/appointment-service.test.ts[2m > [22mAppointment service ΓÇö createProposal[2m > [22mcreates a proposal for a valid Monday 10:00 slot[32m 57[2mms[22m[39m
+[31m   ΓåÆ Cannot schedule an appointment in the past.[39m
+ [32mΓ£ô[39m test/appointment-service.test.ts[2m > [22mAppointment service ΓÇö createProposal[2m > [22mthrows PastAppointmentError for a slot in the past[32m 46[2mms[22m[39m
+ [32mΓ£ô[39m test/appointment-service.test.ts[2m > [22mAppointment service ΓÇö createProposal[2m > [22mthrows BusinessHoursViolationError for Saturday[32m 68[2mms[22m[39m
+ [32mΓ£ô[39m test/appointment-service.test.ts[2m > [22mAppointment service ΓÇö createProposal[2m > [22mthrows BusinessHoursViolationError for 5 PM slot[32m 44[2mms[22m[39m
+ [31m├ù[39m test/appointment-service.test.ts[2m > [22mAppointment service ΓÇö createProposal[2m > [22mthrows BusinessHoursViolationError for 8 AM slot (before 9 AM)[32m 46[2mms[22m[39m
+[31m   ΓåÆ expected error to be instance of BusinessHoursViolationError[39m
+ [32mΓ£ô[39m test/appointment-service.test.ts[2m > [22mAppointment service ΓÇö createProposal[2m > [22mthrows InvalidDurationError when endsAt - startsAt != 30 min[32m 50[2mms[22m[39m
+ [31m├ù[39m test/appointment-service.test.ts[2m > [22mAppointment service ΓÇö createProposal[2m > [22mthrows SlotConflictError when the slot overlaps a confirmed appointment[32m 138[2mms[22m[39m
+[31m   ΓåÆ Cannot schedule an appointment in the past.[39m
+[90mstdout[2m | test/appointment-service.test.ts[2m > [22m[2mAppointment service ΓÇö getProposal[2m > [22m[2mthrows ProposalNotFoundError for non-existent proposal
+[22m[39mprisma:error 
+Invalid `prisma.bookingProposal.findUnique()` invocation in
+C:/Users/hp/Documents/projects/Full_Stack_App/appointment-ai-design-pack (2)/appointment-ai-design-pack/api/src/services/appointment.ts:257:51
+
+  254   userId: string,
+  255   proposalId: string,
+  256 ): Promise<ProposalResult> {
+ΓåÆ 257   const proposal = await prisma.bookingProposal.findUnique(
+Inconsistent column data: Error creating UUID, invalid character: expected an optional prefix of `urn:uuid:` followed by [0-9a-fA-F-], found `n` at 1
+
+ [31m├ù[39m test/appointment-service.test.ts[2m > [22mAppointment service ΓÇö getProposal[2m > [22mretrieves a pending proposal by ID[32m 45[2mms[22m[39m
+[31m   ΓåÆ Cannot schedule an appointment in the past.[39m
+ [31m├ù[39m test/appointment-service.test.ts[2m > [22mAppointment service ΓÇö getProposal[2m > [22mthrows ProposalExpiredError when proposal is past TTL (auto-transitions to expired)[32m 46[2mms[22m[39m
+[31m   ΓåÆ Cannot schedule an appointment in the past.[39m
+ [31m├ù[39m test/appointment-service.test.ts[2m > [22mAppointment service ΓÇö getProposal[2m > [22mthrows ProposalNotFoundError for non-existent proposal[32m 51[2mms[22m[39m
+[31m   ΓåÆ expected error to be instance of ProposalNotFoundError[39m
+ [31m├ù[39m test/appointment-service.test.ts[2m > [22mAppointment service ΓÇö getProposal[2m > [22mthrows ProposalNotFoundError if another user owns the proposal[32m 49[2mms[22m[39m
+[31m   ΓåÆ Cannot schedule an appointment in the past.[39m
+ [31m├ù[39m test/appointment-service.test.ts[2m > [22mAppointment service ΓÇö confirmProposal[2m > [22mcreates a confirmed appointment and marks proposal as confirmed[32m 46[2mms[22m[39m
+[31m   ΓåÆ Cannot schedule an appointment in the past.[39m
+ [31m├ù[39m test/appointment-service.test.ts[2m > [22mAppointment service ΓÇö confirmProposal[2m > [22mis idempotent ΓÇö repeated confirms return the same appointment[32m 46[2mms[22m[39m
+[31m   ΓåÆ Cannot schedule an appointment in the past.[39m
+ [31m├ù[39m test/appointment-service.test.ts[2m > [22mAppointment service ΓÇö confirmProposal[2m > [22mthrows ProposalExpiredError when confirming an expired proposal[32m 43[2mms[22m[39m
+[31m   ΓåÆ Cannot schedule an appointment in the past.[39m
+[90mstdout[2m | test/appointment-service.test.ts[2m > [22m[2mAppointment service ΓÇö confirmProposal[2m > [22m[2mthrows ProposalNotFoundError when confirming a non-existent proposal
+[22m[39mprisma:error 
+Invalid `prisma.bookingProposal.findUnique()` invocation in
+C:/Users/hp/Documents/projects/Full_Stack_App/appointment-ai-design-pack (2)/appointment-ai-design-pack/api/src/services/appointment.ts:302:51
+
+  299   userId: string,
+  300   proposalId: string,
+  301 ): Promise<ConfirmationResult> {
+ΓåÆ 302   const proposal = await prisma.bookingProposal.findUnique(
+Inconsistent column data: Error creating UUID, invalid character: expected an optional prefix of `urn:uuid:` followed by [0-9a-fA-F-], found `n` at 1
+
+ [31m├ù[39m test/appointment-service.test.ts[2m > [22mAppointment service ΓÇö confirmProposal[2m > [22mthrows SlotConflictError when confirming a proposal whose slot is now taken[32m 48[2mms[22m[39m
+[31m   ΓåÆ Cannot schedule an appointment in the past.[39m
+ [31m├ù[39m test/appointment-service.test.ts[2m > [22mAppointment service ΓÇö confirmProposal[2m > [22mthrows ProposalNotFoundError when confirming a non-existent proposal[32m 53[2mms[22m[39m
+[31m   ΓåÆ expected error to be instance of ProposalNotFoundError[39m
+ [31m├ù[39m test/appointment-service.test.ts[2m > [22mAppointment service ΓÇö confirmProposal[2m > [22mthrows ProposalNotFoundError when another user tries to confirm[32m 50[2mms[22m[39m
+[31m   ΓåÆ Cannot schedule an appointment in the past.[39m
+ [32mΓ£ô[39m test/appointment-service.test.ts[2m > [22mAppointment service ΓÇö listAppointments[2m > [22mreturns an empty list when the user has no appointments[32m 49[2mms[22m[39m
+ [31m├ù[39m test/appointment-service.test.ts[2m > [22mAppointment service ΓÇö listAppointments[2m > [22mlists all confirmed appointments for the user[32m 42[2mms[22m[39m
+[31m   ΓåÆ Cannot schedule an appointment in the past.[39m
+[90mstdout[2m | test/appointment-service.test.ts[2m > [22m[2mAppointment service ΓÇö getAppointment[2m > [22m[2mthrows AppointmentNotFoundError for non-existent appointment
+[22m[39mprisma:error 
+Invalid `prisma.appointment.findUnique()` invocation in
+C:/Users/hp/Documents/projects/Full_Stack_App/appointment-ai-design-pack (2)/appointment-ai-design-pack/api/src/services/appointment.ts:432:50
+
+  429   userId: string,
+  430   appointmentId: string,
+  431 ): Promise<AppointmentSummary> {
+ΓåÆ 432   const appointment = await prisma.appointment.findUnique(
+Inconsistent column data: Error creating UUID, invalid character: expected an optional prefix of `urn:uuid:` followed by [0-9a-fA-F-], found `n` at 1
+
+ [31m├ù[39m test/appointment-service.test.ts[2m > [22mAppointment service ΓÇö getAppointment[2m > [22mretrieves a confirmed appointment by ID[32m 44[2mms[22m[39m
+[31m   ΓåÆ Cannot schedule an appointment in the past.[39m
+ [31m├ù[39m test/appointment-service.test.ts[2m > [22mAppointment service ΓÇö getAppointment[2m > [22mthrows AppointmentNotFoundError for non-existent appointment[32m 47[2mms[22m[39m
+[31m   ΓåÆ expected error to be instance of AppointmentNotFoundError[39m
+ [31m├ù[39m test/appointment-service.test.ts[2m > [22mAppointment service ΓÇö getAppointment[2m > [22mthrows AppointmentNotFoundError when another user requests an appointment[32m 49[2mms[22m[39m
+[31m   ΓåÆ Cannot schedule an appointment in the past.[39m
+ [32mΓ£ô[39m test/appointment-service.test.ts[2m > [22mAppointment service ΓÇö cancelAppointment[2m > [22mcancels a confirmed appointment (>= 2h before start)[32m 70[2mms[22m[39m
+ [32mΓ£ô[39m test/appointment-service.test.ts[2m > [22mAppointment service ΓÇö cancelAppointment[2m > [22mthrows NotEligibleForCancellationError when < 2h before start[32m 91[2mms[22m[39m
+[90mstdout[2m | test/appointment-service.test.ts[2m > [22m[2mAppointment service ΓÇö cancelAppointment[2m > [22m[2mthrows AppointmentNotFoundError for non-existent appointment
+[22m[39mprisma:error 
+Invalid `prisma.appointment.findUnique()` invocation in
+C:/Users/hp/Documents/projects/Full_Stack_App/appointment-ai-design-pack (2)/appointment-ai-design-pack/api/src/services/appointment.ts:461:50
+
+  458   userId: string,
+  459   appointmentId: string,
+  460 ): Promise<CancellationResult> {
+ΓåÆ 461   const appointment = await prisma.appointment.findUnique(
+Inconsistent column data: Error creating UUID, invalid character: expected an optional prefix of `urn:uuid:` followed by [0-9a-fA-F-], found `n` at 1
+
+ [32mΓ£ô[39m test/appointment-service.test.ts[2m > [22mAppointment service ΓÇö cancelAppointment[2m > [22mthrows NotEligibleForCancellationError for a non-confirmed appointment[32m 57[2mms[22m[39m
+ [31m├ù[39m test/appointment-service.test.ts[2m > [22mAppointment service ΓÇö cancelAppointment[2m > [22mthrows AppointmentNotFoundError for non-existent appointment[32m 52[2mms[22m[39m
+[31m   ΓåÆ expected error to be instance of AppointmentNotFoundError[39m
+ [32mΓ£ô[39m test/appointment-service.test.ts[2m > [22mAppointment service ΓÇö cancelAppointment[2m > [22mthrows AppointmentNotFoundError when another user tries to cancel[32m 71[2mms[22m[39m
+ [31m├ù[39m test/appointment-service.test.ts[2m > [22mAppointment service ΓÇö proposal expiry boundary[2m > [22mtransitions to expired when clock reaches exact TTL[32m 45[2mms[22m[39m
+[31m   ΓåÆ Cannot schedule an appointment in the past.[39m
+ [31m├ù[39m test/appointment-service.test.ts[2m > [22mAppointment service ΓÇö proposal expiry boundary[2m > [22mkeeps proposal pending when clock is just before TTL[32m 44[2mms[22m[39m
+[31m   ΓåÆ Cannot schedule an appointment in the past.[39m
+
+[31mΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[39m[1m[41m Failed Tests 20 
+[49m[22m[31mΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[39m
+
+[41m[1m FAIL [22m[49m test/appointment-service.test.ts[2m > 
+[22mAppointment service ΓÇö createProposal[2m > [22mcreates a proposal 
+for a valid Monday 10:00 slot
+[31m[1mPastAppointmentError[22m: Cannot schedule an appointment in the 
+past.[39m
+[36m [2mΓ¥»[22m validateSlot 
+src/services/appointment.ts:[2m177:13[22m[39m
+    [90m175|[39m     // No past bookings
+    [90m176|[39m     if (startsAt.getTime() <= now().getTime()) {
+    [90m177|[39m       throw new PastAppointmentError();
+    [90m   |[39m             [31m^[39m
+    [90m178|[39m     }
+    [90m179|[39m
+[90m [2mΓ¥»[22m Object.createProposal 
+src/services/appointment.ts:[2m206:5[22m[39m
+[90m [2mΓ¥»[22m test/appointment-service.test.ts:[2m92:30[22m[39m
+
+[31m[2mΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ
+»ΓÄ»[1/20]ΓÄ»[22m[39m
+
+[41m[1m FAIL [22m[49m test/appointment-service.test.ts[2m > 
+[22mAppointment service ΓÇö createProposal[2m > [22mthrows 
+BusinessHoursViolationError for 8 AM slot (before 9 AM)
+[31m[1mAssertionError[22m: expected error to be instance of 
+BusinessHoursViolationError[39m
+
+[32m- Expected:[39m
+[Function BusinessHoursViolationError]
+
+[31m+ Received:[39m
+PastAppointmentError {
+  "message": "Cannot schedule an appointment in the past.",
+  "name": "PastAppointmentError",
+}
+
+[36m [2mΓ¥»[22m test/appointment-service.test.ts:[2m178:6[22m[39m
+    [90m176|[39m         durationMinutes: 30,
+    [90m177|[39m       }),
+    [90m178|[39m     ).rejects.toThrow(BusinessHoursViolationError);
+    [90m   |[39m      [31m^[39m
+    [90m179|[39m   });
+    [90m180|[39m
+
+[31m[2mΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ
+»ΓÄ»[2/20]ΓÄ»[22m[39m
+
+[41m[1m FAIL [22m[49m test/appointment-service.test.ts[2m > 
+[22mAppointment service ΓÇö createProposal[2m > [22mthrows 
+SlotConflictError when the slot overlaps a confirmed appointment
+[31m[1mPastAppointmentError[22m: Cannot schedule an appointment in the 
+past.[39m
+[36m [2mΓ¥»[22m validateSlot 
+src/services/appointment.ts:[2m177:13[22m[39m
+    [90m175|[39m     // No past bookings
+    [90m176|[39m     if (startsAt.getTime() <= now().getTime()) {
+    [90m177|[39m       throw new PastAppointmentError();
+    [90m   |[39m             [31m^[39m
+    [90m178|[39m     }
+    [90m179|[39m
+[90m [2mΓ¥»[22m Object.createProposal 
+src/services/appointment.ts:[2m206:5[22m[39m
+[90m [2mΓ¥»[22m test/appointment-service.test.ts:[2m207:32[22m[39m
+
+[31m[2mΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ
+»ΓÄ»[3/20]ΓÄ»[22m[39m
+
+[41m[1m FAIL [22m[49m test/appointment-service.test.ts[2m > 
+[22mAppointment service ΓÇö getProposal[2m > [22mretrieves a pending 
+proposal by ID
+[31m[1mPastAppointmentError[22m: Cannot schedule an appointment in the 
+past.[39m
+[36m [2mΓ¥»[22m validateSlot 
+src/services/appointment.ts:[2m177:13[22m[39m
+    [90m175|[39m     // No past bookings
+    [90m176|[39m     if (startsAt.getTime() <= now().getTime()) {
+    [90m177|[39m       throw new PastAppointmentError();
+    [90m   |[39m             [31m^[39m
+    [90m178|[39m     }
+    [90m179|[39m
+[90m [2mΓ¥»[22m Object.createProposal 
+src/services/appointment.ts:[2m206:5[22m[39m
+[90m [2mΓ¥»[22m test/appointment-service.test.ts:[2m236:32[22m[39m
+
+[31m[2mΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ
+»ΓÄ»[4/20]ΓÄ»[22m[39m
+
+[41m[1m FAIL [22m[49m test/appointment-service.test.ts[2m > 
+[22mAppointment service ΓÇö getProposal[2m > [22mthrows 
+ProposalExpiredError when proposal is past TTL (auto-transitions to 
+expired)
+[31m[1mPastAppointmentError[22m: Cannot schedule an appointment in the 
+past.[39m
+[36m [2mΓ¥»[22m validateSlot 
+src/services/appointment.ts:[2m177:13[22m[39m
+    [90m175|[39m     // No past bookings
+    [90m176|[39m     if (startsAt.getTime() <= now().getTime()) {
+    [90m177|[39m       throw new PastAppointmentError();
+    [90m   |[39m             [31m^[39m
+    [90m178|[39m     }
+    [90m179|[39m
+[90m [2mΓ¥»[22m Object.createProposal 
+src/services/appointment.ts:[2m206:5[22m[39m
+[90m [2mΓ¥»[22m test/appointment-service.test.ts:[2m256:32[22m[39m
+
+[31m[2mΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ
+»ΓÄ»[5/20]ΓÄ»[22m[39m
+
+[41m[1m FAIL [22m[49m test/appointment-service.test.ts[2m > 
+[22mAppointment service ΓÇö getProposal[2m > [22mthrows 
+ProposalNotFoundError for non-existent proposal
+[31m[1mAssertionError[22m: expected error to be instance of 
+ProposalNotFoundError[39m
+
+[32m- Expected:[39m
+[Function ProposalNotFoundError]
+
+[31m+ Received:[39m
+PrismaClientKnownRequestError {
+  "message": "
+Invalid `prisma.bookingProposal.findUnique()` invocation in
+C:/Users/hp/Documents/projects/Full_Stack_App/appointment-ai-design-pack 
+(2)/appointment-ai-design-pack/api/src/services/appointment.ts:257:51
+
+  254   userId: string,
+  255   proposalId: string,
+  256 ): Promise<ProposalResult> {
+ΓåÆ 257   const proposal = await prisma.bookingProposal.findUnique(
+Inconsistent column data: Error creating UUID, invalid character: 
+expected an optional prefix of `urn:uuid:` followed by [0-9a-fA-F-], 
+found `n` at 1",
+  "name": "PrismaClientKnownRequestError",
+  "code": "P2023",
+  "clientVersion": "5.22.0",
+  "meta": {
+    "message": "Error creating UUID, invalid character: expected an 
+optional prefix of `urn:uuid:` followed by [0-9a-fA-F-], found `n` at 1",
+    "modelName": "BookingProposal",
+  },
+}
+
+[36m [2mΓ¥»[22m test/appointment-service.test.ts:[2m284:6[22m[39m
+    [90m282|[39m     await expect(
+    [90m283|[39m       svc.getProposal(user.id, 'non-existent-id'),
+    [90m284|[39m     ).rejects.toThrow(ProposalNotFoundError);
+    [90m   |[39m      [31m^[39m
+    [90m285|[39m   });
+    [90m286|[39m
+
+[31m[2mΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ
+»ΓÄ»[6/20]ΓÄ»[22m[39m
+
+[41m[1m FAIL [22m[49m test/appointment-service.test.ts[2m > 
+[22mAppointment service ΓÇö getProposal[2m > [22mthrows 
+ProposalNotFoundError if another user owns the proposal
+[31m[1mPastAppointmentError[22m: Cannot schedule an appointment in the 
+past.[39m
+[36m [2mΓ¥»[22m validateSlot 
+src/services/appointment.ts:[2m177:13[22m[39m
+    [90m175|[39m     // No past bookings
+    [90m176|[39m     if (startsAt.getTime() <= now().getTime()) {
+    [90m177|[39m       throw new PastAppointmentError();
+    [90m   |[39m             [31m^[39m
+    [90m178|[39m     }
+    [90m179|[39m
+[90m [2mΓ¥»[22m Object.createProposal 
+src/services/appointment.ts:[2m206:5[22m[39m
+[90m [2mΓ¥»[22m test/appointment-service.test.ts:[2m295:32[22m[39m
+
+[31m[2mΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ
+»ΓÄ»[7/20]ΓÄ»[22m[39m
+
+[41m[1m FAIL [22m[49m test/appointment-service.test.ts[2m > 
+[22mAppointment service ΓÇö confirmProposal[2m > [22mcreates a 
+confirmed appointment and marks proposal as confirmed
+[31m[1mPastAppointmentError[22m: Cannot schedule an appointment in the 
+past.[39m
+[36m [2mΓ¥»[22m validateSlot 
+src/services/appointment.ts:[2m177:13[22m[39m
+    [90m175|[39m     // No past bookings
+    [90m176|[39m     if (startsAt.getTime() <= now().getTime()) {
+    [90m177|[39m       throw new PastAppointmentError();
+    [90m   |[39m             [31m^[39m
+    [90m178|[39m     }
+    [90m179|[39m
+[90m [2mΓ¥»[22m Object.createProposal 
+src/services/appointment.ts:[2m206:5[22m[39m
+[90m [2mΓ¥»[22m test/appointment-service.test.ts:[2m317:32[22m[39m
+
+[31m[2mΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ
+»ΓÄ»[8/20]ΓÄ»[22m[39m
+
+[41m[1m FAIL [22m[49m test/appointment-service.test.ts[2m > 
+[22mAppointment service ΓÇö confirmProposal[2m > [22mis idempotent ΓÇö 
+repeated confirms return the same appointment
+[31m[1mPastAppointmentError[22m: Cannot schedule an appointment in the 
+past.[39m
+[36m [2mΓ¥»[22m validateSlot 
+src/services/appointment.ts:[2m177:13[22m[39m
+    [90m175|[39m     // No past bookings
+    [90m176|[39m     if (startsAt.getTime() <= now().getTime()) {
+    [90m177|[39m       throw new PastAppointmentError();
+    [90m   |[39m             [31m^[39m
+    [90m178|[39m     }
+    [90m179|[39m
+[90m [2mΓ¥»[22m Object.createProposal 
+src/services/appointment.ts:[2m206:5[22m[39m
+[90m [2mΓ¥»[22m test/appointment-service.test.ts:[2m340:32[22m[39m
+
+[31m[2mΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ
+»ΓÄ»[9/20]ΓÄ»[22m[39m
+
+[41m[1m FAIL [22m[49m test/appointment-service.test.ts[2m > 
+[22mAppointment service ΓÇö confirmProposal[2m > [22mthrows 
+ProposalExpiredError when confirming an expired proposal
+[31m[1mPastAppointmentError[22m: Cannot schedule an appointment in the 
+past.[39m
+[36m [2mΓ¥»[22m validateSlot 
+src/services/appointment.ts:[2m177:13[22m[39m
+    [90m175|[39m     // No past bookings
+    [90m176|[39m     if (startsAt.getTime() <= now().getTime()) {
+    [90m177|[39m       throw new PastAppointmentError();
+    [90m   |[39m             [31m^[39m
+    [90m178|[39m     }
+    [90m179|[39m
+[90m [2mΓ¥»[22m Object.createProposal 
+src/services/appointment.ts:[2m206:5[22m[39m
+[90m [2mΓ¥»[22m test/appointment-service.test.ts:[2m363:32[22m[39m
+
+[31m[2mΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ
+»[10/20]ΓÄ»[22m[39m
+
+[41m[1m FAIL [22m[49m test/appointment-service.test.ts[2m > 
+[22mAppointment service ΓÇö confirmProposal[2m > [22mthrows 
+SlotConflictError when confirming a proposal whose slot is now taken
+[31m[1mPastAppointmentError[22m: Cannot schedule an appointment in the 
+past.[39m
+[36m [2mΓ¥»[22m validateSlot 
+src/services/appointment.ts:[2m177:13[22m[39m
+    [90m175|[39m     // No past bookings
+    [90m176|[39m     if (startsAt.getTime() <= now().getTime()) {
+    [90m177|[39m       throw new PastAppointmentError();
+    [90m   |[39m             [31m^[39m
+    [90m178|[39m     }
+    [90m179|[39m
+[90m [2mΓ¥»[22m Object.createProposal 
+src/services/appointment.ts:[2m206:5[22m[39m
+[90m [2mΓ¥»[22m test/appointment-service.test.ts:[2m386:33[22m[39m
+
+[31m[2mΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ
+»[11/20]ΓÄ»[22m[39m
+
+[41m[1m FAIL [22m[49m test/appointment-service.test.ts[2m > 
+[22mAppointment service ΓÇö confirmProposal[2m > [22mthrows 
+ProposalNotFoundError when confirming a non-existent proposal
+[31m[1mAssertionError[22m: expected error to be instance of 
+ProposalNotFoundError[39m
+
+[32m- Expected:[39m
+[Function ProposalNotFoundError]
+
+[31m+ Received:[39m
+PrismaClientKnownRequestError {
+  "message": "
+Invalid `prisma.bookingProposal.findUnique()` invocation in
+C:/Users/hp/Documents/projects/Full_Stack_App/appointment-ai-design-pack 
+(2)/appointment-ai-design-pack/api/src/services/appointment.ts:302:51
+
+  299   userId: string,
+  300   proposalId: string,
+  301 ): Promise<ConfirmationResult> {
+ΓåÆ 302   const proposal = await prisma.bookingProposal.findUnique(
+Inconsistent column data: Error creating UUID, invalid character: 
+expected an optional prefix of `urn:uuid:` followed by [0-9a-fA-F-], 
+found `n` at 1",
+  "name": "PrismaClientKnownRequestError",
+  "code": "P2023",
+  "clientVersion": "5.22.0",
+  "meta": {
+    "message": "Error creating UUID, invalid character: expected an 
+optional prefix of `urn:uuid:` followed by [0-9a-fA-F-], found `n` at 1",
+    "modelName": "BookingProposal",
+  },
+}
+
+[36m [2mΓ¥»[22m test/appointment-service.test.ts:[2m412:61[22m[39m
+    [90m410|[39m     const svc = createServiceWithClock(new 
+Date(BASE_DATE));
+    [90m411|[39m
+    [90m412|[39m     await expect(svc.confirmProposal(user.id, 
+'no-such-id')).rejects.tΓÇª
+    [90m   |[39m                                                        
+     [31m^[39m
+    [90m413|[39m       ProposalNotFoundError,
+    [90m414|[39m     );
+
+[31m[2mΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ
+»[12/20]ΓÄ»[22m[39m
+
+[41m[1m FAIL [22m[49m test/appointment-service.test.ts[2m > 
+[22mAppointment service ΓÇö confirmProposal[2m > [22mthrows 
+ProposalNotFoundError when another user tries to confirm
+[31m[1mPastAppointmentError[22m: Cannot schedule an appointment in the 
+past.[39m
+[36m [2mΓ¥»[22m validateSlot 
+src/services/appointment.ts:[2m177:13[22m[39m
+    [90m175|[39m     // No past bookings
+    [90m176|[39m     if (startsAt.getTime() <= now().getTime()) {
+    [90m177|[39m       throw new PastAppointmentError();
+    [90m   |[39m             [31m^[39m
+    [90m178|[39m     }
+    [90m179|[39m
+[90m [2mΓ¥»[22m Object.createProposal 
+src/services/appointment.ts:[2m206:5[22m[39m
+[90m [2mΓ¥»[22m test/appointment-service.test.ts:[2m425:32[22m[39m
+
+[31m[2mΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ
+»[13/20]ΓÄ»[22m[39m
+
+[41m[1m FAIL [22m[49m test/appointment-service.test.ts[2m > 
+[22mAppointment service ΓÇö listAppointments[2m > [22mlists all 
+confirmed appointments for the user
+[31m[1mPastAppointmentError[22m: Cannot schedule an appointment in the 
+past.[39m
+[36m [2mΓ¥»[22m validateSlot 
+src/services/appointment.ts:[2m177:13[22m[39m
+    [90m175|[39m     // No past bookings
+    [90m176|[39m     if (startsAt.getTime() <= now().getTime()) {
+    [90m177|[39m       throw new PastAppointmentError();
+    [90m   |[39m             [31m^[39m
+    [90m178|[39m     }
+    [90m179|[39m
+[90m [2mΓ¥»[22m Object.createProposal 
+src/services/appointment.ts:[2m206:5[22m[39m
+[90m [2mΓ¥»[22m test/appointment-service.test.ts:[2m455:34[22m[39m
+
+[31m[2mΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ
+»[14/20]ΓÄ»[22m[39m
+
+[41m[1m FAIL [22m[49m test/appointment-service.test.ts[2m > 
+[22mAppointment service ΓÇö getAppointment[2m > [22mretrieves a 
+confirmed appointment by ID
+[31m[1mPastAppointmentError[22m: Cannot schedule an appointment in the 
+past.[39m
+[36m [2mΓ¥»[22m validateSlot 
+src/services/appointment.ts:[2m177:13[22m[39m
+    [90m175|[39m     // No past bookings
+    [90m176|[39m     if (startsAt.getTime() <= now().getTime()) {
+    [90m177|[39m       throw new PastAppointmentError();
+    [90m   |[39m             [31m^[39m
+    [90m178|[39m     }
+    [90m179|[39m
+[90m [2mΓ¥»[22m Object.createProposal 
+src/services/appointment.ts:[2m206:5[22m[39m
+[90m [2mΓ¥»[22m test/appointment-service.test.ts:[2m479:32[22m[39m
+
+[31m[2mΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ
+»[15/20]ΓÄ»[22m[39m
+
+[41m[1m FAIL [22m[49m test/appointment-service.test.ts[2m > 
+[22mAppointment service ΓÇö getAppointment[2m > [22mthrows 
+AppointmentNotFoundError for non-existent appointment
+[31m[1mAssertionError[22m: expected error to be instance of 
+AppointmentNotFoundError[39m
+
+[32m- Expected:[39m
+[Function AppointmentNotFoundError]
+
+[31m+ Received:[39m
+PrismaClientKnownRequestError {
+  "message": "
+Invalid `prisma.appointment.findUnique()` invocation in
+C:/Users/hp/Documents/projects/Full_Stack_App/appointment-ai-design-pack 
+(2)/appointment-ai-design-pack/api/src/services/appointment.ts:432:50
+
+  429   userId: string,
+  430   appointmentId: string,
+  431 ): Promise<AppointmentSummary> {
+ΓåÆ 432   const appointment = await prisma.appointment.findUnique(
+Inconsistent column data: Error creating UUID, invalid character: 
+expected an optional prefix of `urn:uuid:` followed by [0-9a-fA-F-], 
+found `n` at 1",
+  "name": "PrismaClientKnownRequestError",
+  "code": "P2023",
+  "clientVersion": "5.22.0",
+  "meta": {
+    "message": "Error creating UUID, invalid character: expected an 
+optional prefix of `urn:uuid:` followed by [0-9a-fA-F-], found `n` at 1",
+    "modelName": "Appointment",
+  },
+}
+
+[36m [2mΓ¥»[22m test/appointment-service.test.ts:[2m498:60[22m[39m
+    [90m496|[39m     const svc = createServiceWithClock(new 
+Date(BASE_DATE));
+    [90m497|[39m
+    [90m498|[39m     await expect(svc.getAppointment(user.id, 
+'no-such-id')).rejects.toΓÇª
+    [90m   |[39m                                                        
+    [31m^[39m
+    [90m499|[39m       AppointmentNotFoundError,
+    [90m500|[39m     );
+
+[31m[2mΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ
+»[16/20]ΓÄ»[22m[39m
+
+[41m[1m FAIL [22m[49m test/appointment-service.test.ts[2m > 
+[22mAppointment service ΓÇö getAppointment[2m > [22mthrows 
+AppointmentNotFoundError when another user requests an appointment
+[31m[1mPastAppointmentError[22m: Cannot schedule an appointment in the 
+past.[39m
+[36m [2mΓ¥»[22m validateSlot 
+src/services/appointment.ts:[2m177:13[22m[39m
+    [90m175|[39m     // No past bookings
+    [90m176|[39m     if (startsAt.getTime() <= now().getTime()) {
+    [90m177|[39m       throw new PastAppointmentError();
+    [90m   |[39m             [31m^[39m
+    [90m178|[39m     }
+    [90m179|[39m
+[90m [2mΓ¥»[22m Object.createProposal 
+src/services/appointment.ts:[2m206:5[22m[39m
+[90m [2mΓ¥»[22m test/appointment-service.test.ts:[2m510:32[22m[39m
+
+[31m[2mΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ
+»[17/20]ΓÄ»[22m[39m
+
+[41m[1m FAIL [22m[49m test/appointment-service.test.ts[2m > 
+[22mAppointment service ΓÇö cancelAppointment[2m > [22mthrows 
+AppointmentNotFoundError for non-existent appointment
+[31m[1mAssertionError[22m: expected error to be instance of 
+AppointmentNotFoundError[39m
+
+[32m- Expected:[39m
+[Function AppointmentNotFoundError]
+
+[31m+ Received:[39m
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[31m20 failed[39m[22m[2m | [22m[1m[32m9 passed[39m[22m[90m (29)[39m
+[2m   Start at [22m 14:04:46
+[2m   Duration [22m 1.97s[2m (tests 95%, import 3%, transform 1%)[22m
+PrismaClientKnownRequestError {
+  "message": "
+Invalid `prisma.appointment.findUnique()` invocation in
+C:/Users/hp/Documents/projects/Full_Stack_App/appointment-ai-design-pack 
+(2)/appointment-ai-design-pack/api/src/services/appointment.ts:461:50
+
+  458   userId: string,
+  459   appointmentId: string,
+  460 ): Promise<CancellationResult> {
+ΓåÆ 461   const appointment = await prisma.appointment.findUnique(
+Inconsistent column data: Error creating UUID, invalid character: 
+expected an optional prefix of `urn:uuid:` followed by [0-9a-fA-F-], 
+found `n` at 1",
+  "name": "PrismaClientKnownRequestError",
+  "code": "P2023",
+  "clientVersion": "5.22.0",
+  "meta": {
+    "message": "Error creating UUID, invalid character: expected an 
+optional prefix of `urn:uuid:` followed by [0-9a-fA-F-], found `n` at 1",
+    "modelName": "Appointment",
+  },
+}
+
+[36m [2mΓ¥»[22m test/appointment-service.test.ts:[2m595:63[22m[39m
+    [90m593|[39m     const svc = createServiceWithClock(new 
+Date(BASE_DATE));
+    [90m594|[39m
+    [90m595|[39m     await expect(svc.cancelAppointment(user.id, 
+'no-such-id')).rejectsΓÇª
+    [90m   |[39m                                                        
+       [31m^[39m
+    [90m596|[39m       AppointmentNotFoundError,
+    [90m597|[39m     );
+
+[31m[2mΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ
+»[18/20]ΓÄ»[22m[39m
+
+[41m[1m FAIL [22m[49m test/appointment-service.test.ts[2m > 
+[22mAppointment service ΓÇö proposal expiry boundary[2m > 
+[22mtransitions to expired when clock reaches exact TTL
+
+[31m[1mPastAppointmentError[22m: Cannot schedule an appointment in the 
+past.[39m
+[36m [2mΓ¥»[22m validateSlot 
+src/services/appointment.ts:[2m177:13[22m[39m
+    [90m175|[39m     // No past bookings
+    [90m176|[39m     if (startsAt.getTime() <= now().getTime()) {
+    [90m177|[39m       throw new PastAppointmentError();
+    [90m   |[39m             [31m^[39m
+    [90m178|[39m     }
+    [90m179|[39m
+[90m [2mΓ¥»[22m Object.createProposal 
+src/services/appointment.ts:[2m206:5[22m[39m
+[90m [2mΓ¥»[22m test/appointment-service.test.ts:[2m630:32[22m[39m
+
+[31m[2mΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ
+»[19/20]ΓÄ»[22m[39m
+
+[41m[1m FAIL [22m[49m test/appointment-service.test.ts[2m > 
+[22mAppointment service ΓÇö proposal expiry boundary[2m > [22mkeeps 
+proposal pending when clock is just before TTL
+[31m[1mPastAppointmentError[22m: Cannot schedule an appointment in the 
+past.[39m
+[36m [2mΓ¥»[22m validateSlot 
+src/services/appointment.ts:[2m177:13[22m[39m
+    [90m175|[39m     // No past bookings
+    [90m176|[39m     if (startsAt.getTime() <= now().getTime()) {
+    [90m177|[39m       throw new PastAppointmentError();
+    [90m   |[39m             [31m^[39m
+    [90m178|[39m     }
+    [90m179|[39m
+[90m [2mΓ¥»[22m Object.createProposal 
+src/services/appointment.ts:[2m206:5[22m[39m
+[90m [2mΓ¥»[22m test/appointment-service.test.ts:[2m652:32[22m[39m
+
+[31m[2mΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ
+»[20/20]ΓÄ»[22m[39m
+
